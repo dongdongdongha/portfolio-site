@@ -3,11 +3,10 @@ import Footer from "./footer";
 
 export default function Layout({ children }) {
   return (
-    <>
+    <div className="bg-primary">
       <Header />
-      <h1>레이아웃</h1>
       <div>{children}</div>
       <Footer />
-    </>
+    </div>
   );
 }
