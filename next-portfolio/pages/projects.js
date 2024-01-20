@@ -38,12 +38,6 @@ export async function getStaticProps() {
       Authorization: `Bearer ${TOKEN}`,
     },
     body: JSON.stringify({
-      // sorts: [
-      //   {
-      //     property: "Name",
-      //     direction: "ascending",
-      //   },
-      // ],
       page_size: 100,
     }),
   };
