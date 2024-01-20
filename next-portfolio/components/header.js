@@ -34,7 +34,7 @@ export default function Header() {
             </Link>
 
             <a
-              href="https://github.com/dongdongdongha/portfolio-site"
+              href="https://linktr.ee/ddongha"
               className="mr-5 hover:text-gray-900"
             >
               연락하기
