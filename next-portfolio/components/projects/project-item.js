@@ -1,13 +1,13 @@
 import Image from "next/image";
 
-export default function ProjectItems({ result }) {
-  const title = result.peoperties.이름.title[0].plain_text;
-  const github = result.properties.Github.url;
-  const discription = result.properties.설명.rich_text[0].plain_text;
-  const imgsrc = result.cover.file?.url || result.cover.external.url;
-  const tags = result.peoperties.태그.multi_select;
-  const startDate = result.properties.WorkPeriod.date.start;
-  const endDate = result.properties.WorkPeriod.date.end;
+export default function ProjectItems({ data }) {
+  const title = data.properties.이름.title.plain_text;
+  const github = data.properties.Github.url;
+  const discription = data.properties.설명.rich_text[0].plain_text;
+  const imgsrc = data.cover.file?.url || data.cover.external.url;
+  const tags = data.properties.태그.multi_select.name;
+  const startDate = data.created_time;
+  const endDate = data.last_edited_time;
 
   const calculatePeriod = (start, end) => {
     const startDateStringArray = start.split("-");
@@ -50,20 +50,12 @@ export default function ProjectItems({ result }) {
         <h3 mt-4 text-xl>
           {discription}
         </h3>
-        <a href="{github}">깃허브 바로가기</a>
+        <a href={github}>깃허브 바로가기</a>
         <h3 className="mt-4 text-xl">
-          작업기간 : {start} ~ {end}({calculatePeriod(start, end)}일)
+          작업기간 : {startDate} ~ {endDate}(
+          {calculatePeriod(startDate, endDate)}일)
         </h3>
-        <div className="flex items-start mt-2">
-          {tags.map((aTag) => (
-            <h1
-              className="px-2 py-1 mr-2 rounded-md bg-sky-200 dark:bg-sky-700"
-              key={aTag.id}
-            >
-              {aTag.name}
-            </h1>
-          ))}
-        </div>
+        <div className="flex items-start mt-2">{tags}</div>
       </div>
     </div>
   );
